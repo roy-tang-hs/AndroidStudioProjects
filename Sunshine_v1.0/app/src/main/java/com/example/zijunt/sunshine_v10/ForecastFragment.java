@@ -1,5 +1,6 @@
 package com.example.zijunt.sunshine_v10;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,6 +64,7 @@ public class ForecastFragment extends Fragment {
             weatherTask.execute("94043");
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -101,7 +102,10 @@ public class ForecastFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String forecast = forecastAdapter.getItem(position);
-                Toast.makeText(getActivity(), forecast, Toast.LENGTH_LONG).show();
+//                Toast.makeText(getActivity(), forecast, Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(getActivity(), DetailActivity.class).putExtra(Intent.EXTRA_TEXT,forecast);
+                startActivity(intent);
             }
         });
 
